@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acta de Entrega — Marriott S.A.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --marriott-navy: #1B2A4A;
+    --marriott-gold: #B8923A;
+    --marriott-gold-light: #D4AF6A;
+    --surface: #F7F6F3;
+    --surface-card: #FFFFFF;
+    --border: #E2DDD6;
+    --border-focus: #B8923A;
+    --text-primary: #1A1A1A;
+    --text-secondary: #6B6560;
+    --text-muted: #9E9890;
+    --accent-green: #2D6A4F;
+    --accent-green-bg: #EAF4EF;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06);
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--surface);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--marriott-navy);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-logo {
+    width: 36px;
+    height: 36px;
+    background: var(--marriott-gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .brand-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.3px;
+  }
+  .brand-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .header-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+  .header-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* MAIN LAYOUT */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* PAGE TITLE */
+  .page-title {
+    margin-bottom: 28px;
+  }
+  .page-title h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--marriott-navy);
+    letter-spacing: -0.3px;
+  }
+  .page-title p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* INVENTORY STRIP */
+  .inventory-strip {
+    background: var(--marriott-navy);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .inventory-stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .inventory-count {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--marriott-gold);
+    line-height: 1;
+    font-family: 'DM Mono', monospace;
+  }
+  .inventory-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+  }
+  .inventory-label strong {
+    display: block;
+    color: white;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+  .inv-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .btn-inv {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .btn-inv-csv {
+    background: var(--marriott-gold);
+    color: white;
+  }
+  .btn-inv-csv:hover { background: var(--marriott-gold-light); transform: translateY(-1px); }
+  .btn-inv-view {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .btn-inv-view:hover { background: rgba(255,255,255,0.18); }
+
+  /* FORM CARD */
+  .form-card {
+    background: var(--surface-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .section-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-num {
+    width: 24px;
+    height: 24px;
+    background: var(--marriott-navy);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--marriott-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-body {
+    padding: 20px 24px;
+  }
+
+  /* FORM GRID */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-grid .full {
+    grid-column: 1 / -1;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .field input, .field select, .field textarea {
+    padding: 10px 13px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    background: #FAFAF8;
+    transition: all 0.15s;
+    outline: none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--border-focus);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(184,146,58,0.12);
+  }
+  .field input::placeholder, .field textarea::placeholder {
+    color: var(--text-muted);
+  }
+  .field textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  /* EQUIPMENT TYPE SELECTOR */
+  .equip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .equip-option {
+    position: relative;
+  }
+  .equip-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .equip-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+    background: #FAFAF8;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .equip-option label .icon {
+    font-size: 22px;
+  }
+  .equip-option input:checked + label {
+    border-color: var(--marriott-gold);
+    background: #FBF5EA;
+    color: var(--marriott-navy);
+    box-shadow: 0 0 0 3px rgba(184,146,58,0.12);
+  }
+  .equip-option label:hover {
+    border-color: var(--marriott-gold-light);
+    background: #FDFAF4;
+  }
+
+  /* ACCESSORIES */
+  .acc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .acc-option {
+    position: relative;
+  }
+  .acc-option input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .acc-option label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.15s;
+    background: #FAFAF8;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+  .acc-option .check-icon {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+  }
+  .acc-option input:checked + label {
+    border-color: var(--accent-green);
+    background: var(--accent-green-bg);
+    color: var(--accent-green);
+  }
+  .acc-option input:checked + label .check-icon {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+  }
+  .acc-option input:checked + label .check-icon::after {
+    content: '✓';
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .acc-option label:hover {
+    border-color: #a8d5bc;
+    background: #f0faf4;
+  }
+
+  /* SUBMIT AREA */
+  .submit-area {
+    background: var(--surface-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .submit-hint {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+  .submit-hint strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .submit-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: var(--marriott-navy);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+  .submit-btn:hover {
+    background: #253A61;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(27,42,74,0.3);
+  }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn .icon { font-size: 16px; }
+
+  /* TOAST */
+  .toast-container {
+    position: fixed;
+    top: 80px;
+    right: 24px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .toast {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    min-width: 280px;
+    max-width: 360px;
+    animation: slideIn 0.25s ease;
+    border-left: 4px solid var(--accent-green);
+  }
+  .toast.error { border-left-color: #dc2626; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .toast-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .toast-body {}
+  .toast-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+  .toast-msg { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .toast a { color: var(--marriott-gold); font-weight: 600; cursor: pointer; text-decoration: none; }
+  .toast a:hover { text-decoration: underline; }
+
+  /* MODAL / INVENTORY TABLE */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 200;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    animation: fadeIn 0.2s;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal {
+    background: white;
+    border-radius: var(--radius) var(--radius) 0 0;
+    width: 100%;
+    max-width: 900px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.25s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .modal-head {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-head h2 { font-size: 16px; font-weight: 700; color: var(--marriott-navy); }
+  .modal-close {
+    width: 32px; height: 32px;
+    border: none; background: var(--surface);
+    border-radius: 50%; cursor: pointer;
+    font-size: 18px; color: var(--text-secondary);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .modal-close:hover { background: var(--border); color: var(--text-primary); }
+  .modal-body {
+    overflow: auto;
+    flex: 1;
+    padding: 0;
+  }
+  .inv-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .inv-table th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+  .inv-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #F0EDE8;
+    color: var(--text-primary);
+    vertical-align: middle;
+  }
+  .inv-table tr:hover td { background: #FAFAF8; }
+  .inv-table .empty-row td {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 32px;
+  }
+  .equip-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: #EEF0F5;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--marriott-navy);
+  }
+  .dl-icon { font-size: 14px; cursor: pointer; opacity: 0.6; transition: opacity 0.15s; }
+  .dl-icon:hover { opacity: 1; }
+  .del-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 14px; opacity: 0.5; transition: opacity 0.15s; padding: 0 4px;
+  }
+  .del-btn:hover { opacity: 1; }
+  .btn-inv-json {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .btn-inv-json:hover { background: rgba(255,255,255,0.18); }
+  .modal-footer {
+    padding: 12px 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
+  /* LOADING */
+  .loading-overlay {
+    position: fixed; inset: 0;
+    background: rgba(255,255,255,0.85);
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    display: none;
+  }
+  .spinner {
+    width: 40px; height: 40px;
+    border: 3px solid var(--border);
+    border-top-color: var(--marriott-gold);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 14px; font-weight: 600; color: var(--marriott-navy); }
+
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .equip-grid { grid-template-columns: repeat(2, 1fr); }
+    .acc-grid { grid-template-columns: 1fr 1fr; }
+    .inventory-strip { flex-direction: column; align-items: flex-start; }
+    .submit-area { flex-direction: column; }
+    .submit-btn { width: 100%; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-logo">M</div>
+      <div class="brand-text">
+        <span class="brand-name">Marriott S.A. Ecuador</span>
+        <span class="brand-sub">Sistemas · TI</span>
+      </div>
+    </div>
+    <div class="header-badge">Actas en tiempo real</div>
+  </div>
+</header>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- LOADING -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <div class="loading-text">Generando acta en Word…</div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="page-title">
+    <h1>Entrega de Activo Informático</h1>
+    <p>Completa los datos del equipo — el sistema genera el inventario y el acta lista para firmar.</p>
+  </div>
+
+  <!-- INVENTORY STRIP -->
+  <div class="inventory-strip">
+    <div class="inventory-stat">
+      <div class="inventory-count" id="invCount">0</div>
+      <div class="inventory-label">
+        <strong id="invLabel">Sin registros aún</strong>
+        equipos registrados en esta sesión
+      </div>
+    </div>
+    <div class="inv-actions">
+      <button class="btn-inv btn-inv-view" onclick="openInventory()">📋 Ver inventario</button>
+      <button class="btn-inv btn-inv-csv" onclick="exportExcel()">⬇ Exportar Excel</button>
+    </div>
+  </div>
+
+  <form id="actaForm" onsubmit="handleSubmit(event)" novalidate>
+
+    <!-- SECCIÓN 1: COLABORADOR -->
+    <div class="form-card">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">Datos del Colaborador</div>
+      </div>
+      <div class="section-body">
+        <div class="form-grid">
+          <div class="field">
+            <label>Nombre completo *</label>
+            <input type="text" id="nombre" placeholder="Ej. Juan Carlos Pérez Mora" required>
+          </div>
+          <div class="field">
+            <label>Cédula de identidad *</label>
+            <input type="text" id="cedula" placeholder="Ej. 0912345678" required maxlength="13">
+          </div>
+          <div class="field">
+            <label>Cargo *</label>
+            <input type="text" id="cargo" placeholder="Ej. Analista de Sistemas" required>
+          </div>
+          <div class="field">
+            <label>Área / Departamento *</label>
+            <input type="text" id="area" placeholder="Ej. Tecnología de la Información" required>
+          </div>
+          <div class="field">
+            <label>Centro de costos</label>
+            <input type="text" id="cc" placeholder="Ej. CC-045">
+          </div>
+          <div class="field">
+            <label>Fecha de entrega *</label>
+            <input type="date" id="fecha" required>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 2: EQUIPO -->
+    <div class="form-card">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">Detalle del Equipo Asignado</div>
+      </div>
+      <div class="section-body">
+        <div class="form-grid">
+          <div class="field full">
+            <label>Tipo de equipo *</label>
+            <div class="equip-grid">
+              <div class="equip-option">
+                <input type="radio" name="tipo" id="t-laptop" value="Laptop" required>
+                <label for="t-laptop"><span class="icon">💻</span>Laptop</label>
+              </div>
+              <div class="equip-option">
+                <input type="radio" name="tipo" id="t-desktop" value="Desktop">
+                <label for="t-desktop"><span class="icon">🖥️</span>Desktop</label>
+              </div>
+              <div class="equip-option">
+                <input type="radio" name="tipo" id="t-monitor" value="Monitor">
+                <label for="t-monitor"><span class="icon">📺</span>Monitor</label>
+              </div>
+              <div class="equip-option">
+                <input type="radio" name="tipo" id="t-telefono" value="Teléfono">
+                <label for="t-telefono"><span class="icon">📱</span>Teléfono</label>
+              </div>
+              <div class="equip-option">
+                <input type="radio" name="tipo" id="t-tablet" value="Tablet">
+                <label for="t-tablet"><span class="icon">📟</span>Tablet</label>
+              </div>
+              <div class="equip-option">
+                <input type="radio" name="tipo" id="t-otro" value="Otro">
+                <label for="t-otro"><span class="icon">📦</span>Otro</label>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Marca *</label>
+            <input type="text" id="marca" placeholder="Ej. Dell, HP, Lenovo…" required>
+          </div>
+          <div class="field">
+            <label>Modelo *</label>
+            <input type="text" id="modelo" placeholder="Ej. Latitude 5440" required>
+          </div>
+          <div class="field">
+            <label>Número de serie *</label>
+            <input type="text" id="serie" placeholder="Ej. SN-88291XJ" required>
+          </div>
+          <div class="field">
+            <label>Código interno (activo)</label>
+            <input type="text" id="codigoActivo" placeholder="Ej. ACT-00231">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 3: ACCESORIOS -->
+    <div class="form-card">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div class="section-title">Accesorios Entregados</div>
+      </div>
+      <div class="section-body">
+        <div class="acc-grid">
+          <div class="acc-option">
+            <input type="checkbox" id="acc-cargador" value="Cargador">
+            <label for="acc-cargador">
+              <span class="check-icon"></span> Cargador
+            </label>
+          </div>
+          <div class="acc-option">
+            <input type="checkbox" id="acc-mouse" value="Mouse">
+            <label for="acc-mouse">
+              <span class="check-icon"></span> Mouse
+            </label>
+          </div>
+          <div class="acc-option">
+            <input type="checkbox" id="acc-teclado" value="Teclado">
+            <label for="acc-teclado">
+              <span class="check-icon"></span> Teclado
+            </label>
+          </div>
+          <div class="acc-option">
+            <input type="checkbox" id="acc-funda" value="Funda / Maletín">
+            <label for="acc-funda">
+              <span class="check-icon"></span> Funda / Maletín
+            </label>
+          </div>
+          <div class="acc-option">
+            <input type="checkbox" id="acc-cable" value="Cable de poder">
+            <label for="acc-cable">
+              <span class="check-icon"></span> Cable de poder
+            </label>
+          </div>
+          <div class="acc-option">
+            <input type="checkbox" id="acc-otros" value="otros">
+            <label for="acc-otros">
+              <span class="check-icon"></span> Otros…
+            </label>
+          </div>
+        </div>
+        <div class="field" id="otrosField" style="margin-top:12px;display:none;">
+          <label>Especifique otros accesorios</label>
+          <input type="text" id="otrosTexto" placeholder="Ej. Docking station, adaptador HDMI…">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 4: ESTADO -->
+    <div class="form-card">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div class="section-title">Estado del Equipo y Observaciones</div>
+      </div>
+      <div class="section-body">
+        <div class="field">
+          <label>Observaciones</label>
+          <textarea id="observaciones" placeholder="Si se deja vacío, el acta indicará que el equipo se entrega en óptimas condiciones de funcionamiento."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN 5: FIRMAS -->
+    <div class="form-card">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div class="section-title">Responsable TI (Quien Entrega)</div>
+      </div>
+      <div class="section-body">
+        <div class="form-grid">
+          <div class="field">
+            <label>Nombre del responsable TI</label>
+            <input type="text" id="tiNombre" placeholder="Ej. Austin Arteaga">
+          </div>
+          <div class="field">
+            <label>Cargo TI</label>
+            <input type="text" id="tiCargo" placeholder="Ej. Systems Technician">
+          </div>
+          <div class="field">
+            <label>Nombre RRHH (si aplica)</label>
+            <input type="text" id="rrhhNombre" placeholder="Ej. María González">
+          </div>
+          <div class="field">
+            <label>Cargo RRHH</label>
+            <input type="text" id="rrhhCargo" placeholder="Ej. Jefe de Recursos Humanos">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-area">
+      <div class="submit-hint">
+        <strong>Guardar en inventario + Descargar Acta</strong><br>
+        El acta se generará en formato .docx lista para imprimir y firmar.
+      </div>
+      <button type="submit" class="submit-btn">
+        <span class="icon">📄</span> Registrar y Generar Acta
+      </button>
+    </div>
+
+  </form>
+</main>
+
+<!-- MODAL INVENTARIO -->
+<div class="modal-overlay" id="inventoryModal" style="display:none;" onclick="closeInventoryOutside(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>📋 Inventario de equipos</h2>
+      <button class="modal-close" onclick="closeInventory()">✕</button>
+    </div>
+    <div class="modal-body">
+      <table class="inv-table" id="invTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Colaborador</th>
+            <th>Cédula</th>
+            <th>Área</th>
+            <th>Equipo</th>
+            <th>Marca / Modelo</th>
+            <th>Serie</th>
+            <th>Fecha</th>
+            <th>Acta</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody id="invBody">
+          <tr class="empty-row"><td colspan="10">Sin registros aún</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <input type="file" id="jsonFileInput" accept=".json" style="display:none" onchange="importJSON(event)">
+      <button class="btn-inv btn-inv-json" onclick="document.getElementById('jsonFileInput').click()">📂 Importar JSON</button>
+      <button class="btn-inv btn-inv-json" onclick="exportJSON()">💾 Exportar JSON</button>
+      <button class="btn-inv btn-inv-csv" onclick="exportExcel()">⬇ Exportar Excel</button>
+    </div>
+  </div>
+</div>
+
+<!-- SheetJS para Excel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<!-- DOCX LIBRARY (CDN) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js"></script>
+
+<script>
+// ===================== STATE =====================
+let inventory = [];
+
+// Persist to localStorage on every change
+function saveToStorage() {
+  try { localStorage.setItem('marriott_inventory', JSON.stringify(inventory)); } catch(e) {}
+}
+function loadFromStorage() {
+  try {
+    const raw = localStorage.getItem('marriott_inventory');
+    if (raw) { inventory = JSON.parse(raw); updateInventoryUI(); }
+  } catch(e) {}
+}
+
+// ===================== INIT =====================
+document.addEventListener('DOMContentLoaded', () => {
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('fecha').value = today;
+
+  document.getElementById('acc-otros').addEventListener('change', function() {
+    document.getElementById('otrosField').style.display = this.checked ? 'block' : 'none';
+  });
+
+  loadFromStorage();
+});
+
+// ===================== SUBMIT =====================
+async function handleSubmit(e) {
+  e.preventDefault();
+  if (!validate()) return;
+
+  const data = collectData();
+  inventory.push(data);
+  saveToStorage();
+  updateInventoryUI();
+  showLoading(true);
+
+  try {
+    const blob = await generateDocx(data);
+    downloadBlob(blob, `Acta_${data.nombre.replace(/\s+/g,'_')}_${data.fecha.replace(/\//g,'-')}.docx`);
+    showToast('success', '✅ Registro guardado', `Acta de ${data.nombre} descargada. <a onclick="openInventory()">Ver inventario</a>`);
+    resetForm();
+  } catch(err) {
+    console.error(err);
+    showToast('error', '❌ Error al generar', 'No se pudo crear el archivo Word. Revisa la consola.');
+  } finally {
+    showLoading(false);
+  }
+}
+
+// ===================== VALIDATE =====================
+function validate() {
+  const required = ['nombre','cedula','cargo','area','fecha','marca','modelo','serie'];
+  let ok = true;
+  required.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.style.borderColor = '#dc2626';
+      el.style.boxShadow = '0 0 0 3px rgba(220,38,38,0.12)';
+      ok = false;
+      setTimeout(() => { el.style.borderColor=''; el.style.boxShadow=''; }, 2500);
+    }
+  });
+  const tipoEl = document.querySelector('input[name="tipo"]:checked');
+  if (!tipoEl) {
+    showToast('error', 'Campo requerido', 'Selecciona el tipo de equipo.');
+    ok = false;
+  }
+  if (!ok && required.some(id => !document.getElementById(id).value.trim())) {
+    showToast('error', 'Campos incompletos', 'Completa los campos marcados en rojo.');
+  }
+  return ok;
+}
+
+// ===================== COLLECT =====================
+function collectData() {
+  const accs = [];
+  ['acc-cargador','acc-mouse','acc-teclado','acc-funda','acc-cable'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el.checked) accs.push(el.value);
+  });
+  const otrosChk = document.getElementById('acc-otros');
+  if (otrosChk.checked) {
+    const otrosTxt = document.getElementById('otrosTexto').value.trim();
+    if (otrosTxt) accs.push(otrosTxt);
+    else accs.push('Otros');
+  }
+
+  const obs = document.getElementById('observaciones').value.trim();
+
+  return {
+    nombre: v('nombre'),
+    cedula: v('cedula'),
+    cargo: v('cargo'),
+    area: v('area'),
+    cc: v('cc') || '—',
+    fecha: formatFecha(document.getElementById('fecha').value),
+    fechaRaw: document.getElementById('fecha').value,
+    tipo: document.querySelector('input[name="tipo"]:checked').value,
+    marca: v('marca'),
+    modelo: v('modelo'),
+    serie: v('serie'),
+    codigoActivo: v('codigoActivo') || '—',
+    accesorios: accs,
+    observaciones: obs || 'El equipo se entrega en óptimas condiciones de funcionamiento, sin daños físicos ni fallas técnicas reportadas al momento de la entrega.',
+    tiNombre: v('tiNombre') || '______________________',
+    tiCargo: v('tiCargo') || 'Sistemas / TI',
+    rrhhNombre: v('rrhhNombre') || '______________________',
+    rrhhCargo: v('rrhhCargo') || 'Recursos Humanos',
+  };
+}
+
+function v(id) { return document.getElementById(id).value.trim(); }
+
+function formatFecha(raw) {
+  if (!raw) return '___/___/______';
+  const [y,m,d] = raw.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+// ===================== DELETE =====================
+function deleteRecord(i) {
+  if (!confirm(`¿Eliminar el registro de "${inventory[i].nombre}"?`)) return;
+  inventory.splice(i, 1);
+  saveToStorage();
+  updateInventoryUI();
+  renderInventoryTable();
+}
+
+// ===================== INVENTORY UI =====================
+function updateInventoryUI() {
+  const n = inventory.length;
+  document.getElementById('invCount').textContent = n;
+  document.getElementById('invLabel').textContent = n === 1 ? '1 equipo registrado' : `${n} equipos registrados`;
+}
+
+function openInventory() {
+  renderInventoryTable();
+  document.getElementById('inventoryModal').style.display = 'flex';
+}
+function closeInventory() {
+  document.getElementById('inventoryModal').style.display = 'none';
+}
+function closeInventoryOutside(e) {
+  if (e.target === document.getElementById('inventoryModal')) closeInventory();
+}
+
+function renderInventoryTable() {
+  const tbody = document.getElementById('invBody');
+  if (inventory.length === 0) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="10">Sin registros aún</td></tr>';
+    return;
+  }
+  tbody.innerHTML = inventory.map((d,i) => `
+    <tr>
+      <td><strong>${i+1}</strong></td>
+      <td>${d.nombre}</td>
+      <td>${d.cedula}</td>
+      <td>${d.area}</td>
+      <td><span class="equip-badge">${d.tipo}</span></td>
+      <td>${d.marca} ${d.modelo}</td>
+      <td style="font-family:monospace;font-size:12px;">${d.serie}</td>
+      <td>${d.fecha}</td>
+      <td><span class="dl-icon" title="Descargar acta" onclick="redownload(${i})">⬇️</span></td>
+      <td><button class="del-btn" title="Eliminar registro" onclick="deleteRecord(${i})">🗑️</button></td>
+    </tr>
+  `).join('');
+}
+
+async function redownload(i) {
+  const data = inventory[i];
+  showLoading(true);
+  try {
+    const blob = await generateDocx(data);
+    downloadBlob(blob, `Acta_${data.nombre.replace(/\s+/g,'_')}_${data.fecha.replace(/\//g,'-')}.docx`);
+  } finally {
+    showLoading(false);
+  }
+}
+
+// ===================== EXCEL EXPORT =====================
+function exportExcel() {
+  if (inventory.length === 0) {
+    showToast('error', 'Sin datos', 'Registra al menos un equipo primero.');
+    return;
+  }
+  const headers = ['#','Nombre','Cédula','Cargo','Área','Centro de Costos','Fecha','Tipo','Marca','Modelo','N° Serie','Código Activo','Accesorios','Observaciones','Entregado por TI','Cargo TI','RRHH','Cargo RRHH'];
+  const rows = inventory.map((d,i) => [
+    i+1, d.nombre, d.cedula, d.cargo, d.area, d.cc, d.fecha, d.tipo,
+    d.marca, d.modelo, d.serie, d.codigoActivo,
+    d.accesorios.join(' | '), d.observaciones, d.tiNombre, d.tiCargo, d.rrhhNombre, d.rrhhCargo
+  ]);
+
+  const wb = XLSX.utils.book_new();
+  const wsData = [headers, ...rows];
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+  // Column widths
+  ws['!cols'] = [
+    {wch:4},{wch:28},{wch:14},{wch:22},{wch:22},{wch:14},{wch:12},
+    {wch:10},{wch:12},{wch:18},{wch:16},{wch:14},{wch:30},{wch:40},
+    {wch:22},{wch:20},{wch:22},{wch:20}
+  ];
+
+  XLSX.utils.book_append_sheet(wb, ws, 'Inventario TI');
+  XLSX.writeFile(wb, `Inventario_Activos_TI_${new Date().toISOString().split('T')[0]}.xlsx`);
+  showToast('success', '✅ Excel exportado', `${inventory.length} registro(s) descargados.`);
+}
+
+// ===================== JSON EXPORT / IMPORT =====================
+function exportJSON() {
+  if (inventory.length === 0) {
+    showToast('error', 'Sin datos', 'No hay registros para exportar.');
+    return;
+  }
+  const json = JSON.stringify(inventory, null, 2);
+  const blob = new Blob([json], { type: 'application/json;charset=utf-8;' });
+  downloadBlob(blob, `Inventario_Marriott_${new Date().toISOString().split('T')[0]}.json`);
+  showToast('success', '✅ JSON exportado', `${inventory.length} registro(s) guardados.`);
+}
+
+function importJSON(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!Array.isArray(data)) throw new Error('Formato inválido');
+      // Merge avoiding duplicates by cedula+serie
+      const existingKeys = new Set(inventory.map(r => r.cedula + '_' + r.serie));
+      let added = 0;
+      data.forEach(r => {
+        const key = r.cedula + '_' + r.serie;
+        if (!existingKeys.has(key)) { inventory.push(r); existingKeys.add(key); added++; }
+      });
+      saveToStorage();
+      updateInventoryUI();
+      renderInventoryTable();
+      showToast('success', '✅ JSON importado', `${added} registro(s) nuevos añadidos.`);
+    } catch(err) {
+      showToast('error', '❌ Error al importar', 'El archivo JSON no tiene el formato correcto.');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ===================== DOCX GENERATION =====================
+async function generateDocx(d) {
+  const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
+          AlignmentType, BorderStyle, WidthType, ShadingType } = docx;
+
+  const NAVY = '1B2A4A';
+  const GOLD = 'B8923A';
+  const LGRAY = 'F0EDE8';
+  const DGRAY = '5C5752';
+  const PAGE_W = 11906; // A4
+  const CONTENT_W = 9026;
+  const COL1 = 2600;
+  const COL2 = CONTENT_W - COL1;
+
+  // Helpers
+  const solid = (c) => ({ type: BorderStyle.SINGLE, size: 6, color: c });
+  const none = () => ({ style: BorderStyle.NONE, size: 0, color: 'FFFFFF' });
+  const allNone = { top: none(), bottom: none(), left: none(), right: none(), insideH: none(), insideV: none() };
+  const sep = { top: none(), bottom: solid('D0CAC0'), left: none(), right: none() };
+
+  const label = (text) => new Paragraph({
+    children: [new TextRun({ text, bold: true, size: 18, color: NAVY, font: 'Arial' })],
+  });
+  const val = (text, opts={}) => new Paragraph({
+    children: [new TextRun({ text: text||'—', size: 20, font: 'Arial', ...opts })],
+  });
+  const spacer = (n=120) => new Paragraph({ spacing: { before: n, after: 0 }, children: [new TextRun('')] });
+
+  function row2(l1, v1, l2, v2) {
+    return new Table({
+      width: { size: CONTENT_W, type: WidthType.DXA },
+      columnWidths: [COL1, COL2 - COL1, COL1, COL2 - COL1 + 200],
+      borders: allNone,
+      rows: [
+        new TableRow({ children: [
+          new TableCell({ borders: allNone, width: { size: 1200, type: WidthType.DXA }, margins:{top:60,bottom:60,left:0,right:100},
+            children: [new Paragraph({ children: [new TextRun({ text: l1, bold:true, size:18, color:NAVY, font:'Arial' })] })] }),
+          new TableCell({ borders: allNone, width: { size: 3000, type: WidthType.DXA }, margins:{top:60,bottom:60,left:0,right:200},
+            children: [val(v1)] }),
+          new TableCell({ borders: allNone, width: { size: 1400, type: WidthType.DXA }, margins:{top:60,bottom:60,left:0,right:100},
+            children: [new Paragraph({ children: [new TextRun({ text: l2, bold:true, size:18, color:NAVY, font:'Arial' })] })] }),
+          new TableCell({ borders: allNone, width: { size: 3626, type: WidthType.DXA }, margins:{top:60,bottom:60,left:0,right:0},
+            children: [val(v2)] }),
+        ]})
+      ]
+    });
+  }
+
+  function sectionTitle(num, text) {
+    return new Paragraph({
+      spacing: { before: 240, after: 60 },
+      shading: { fill: NAVY, type: ShadingType.CLEAR },
+      children: [
+        new TextRun({ text: `${num}. ${text}`, bold: true, size: 20, color: 'FFFFFF', font: 'Arial' }),
+      ],
+      indent: { left: 100, right: 100 },
+    });
+  }
+
+  const ACCS_ALL = ['Cargador','Mouse','Teclado','Funda / Maletín','Cable de poder'];
+  function accRow() {
+    const others = d.accesorios.filter(a => !ACCS_ALL.includes(a));
+    const parts = ACCS_ALL.map(a => {
+      const checked = d.accesorios.includes(a);
+      return new TextRun({ text: `${checked ? '☑' : '☐'} ${a}   `, size: 20, font: 'Arial' });
+    });
+    const children = [new TextRun({ text: '', size: 20 }), ...parts];
+    if (others.length) {
+      children.push(new TextRun({ text: `☑ Otros: ${others.join(', ')}`, size: 20, font: 'Arial' }));
+    }
+    return new Paragraph({ children, spacing: { before: 60, after: 60 } });
+  }
+
+  function tipoRow() {
+    const tipos = ['Laptop','Desktop','Monitor','Teléfono','Tablet','Otro'];
+    const parts = tipos.map(t =>
+      new TextRun({ text: `${d.tipo === t ? '☑' : '☐'} ${t}   `, size: 20, font: 'Arial' })
+    );
+    return new Paragraph({ children: parts, spacing: { before: 60, after: 60 } });
+  }
+
+  function firmaBlock(nombre, cargo, rol) {
+    return new TableCell({
+      borders: allNone,
+      width: { size: Math.floor(CONTENT_W/3), type: WidthType.DXA },
+      margins: { top: 100, bottom: 100, left: 100, right: 100 },
+      children: [
+        new Paragraph({
+          border: { top: solid('1B2A4A') },
+          spacing: { before: 500 },
+          children: [new TextRun({ text: nombre, bold: true, size: 18, font: 'Arial', color: NAVY })]
+        }),
+        new Paragraph({ children: [new TextRun({ text: cargo, size: 18, font: 'Arial', color: DGRAY })] }),
+        new Paragraph({ children: [new TextRun({ text: rol, size: 16, font: 'Arial', color: DGRAY, italics: true })] }),
+      ]
+    });
+  }
+
+  const clausulasTexto = [
+    { n:'5', t:'DECLARACIÓN DEL COLABORADOR', b:`El colaborador declara haber recibido en perfectas condiciones el equipo informático descrito en el presente documento, comprometiéndose a utilizarlo exclusivamente para las actividades laborales que le han sido encomendadas por la empresa.` },
+    { n:'6', t:'RESPONSABILIDAD Y CUIDADO', b:`El colaborador asume la responsabilidad del cuidado y mantenimiento del equipo entregado. Cualquier daño, pérdida o deterioro causado por negligencia o mal uso será de responsabilidad del colaborador, quien deberá responder económicamente por el valor del equipo o su reparación.` },
+    { n:'7', t:'AUTORIZACIÓN DE DESCUENTO', b:`En caso de daño, pérdida o no devolución del equipo al momento de su desvinculación de la empresa, el colaborador autoriza expresamente a Marriott S.A. a descontar el valor correspondiente de sus haberes o liquidación final de acuerdo con lo establecido en la normativa laboral vigente.` },
+    { n:'8', t:'RESTRICCIONES DE USO', b:`Queda estrictamente prohibido: instalar software no autorizado, utilizar el equipo para actividades personales ajenas a las funciones laborales, prestar o transferir el equipo a terceros sin autorización expresa del Departamento de TI, y realizar modificaciones físicas o de hardware sin previa aprobación.` },
+    { n:'9', t:'DEVOLUCIÓN DEL EQUIPO', b:`El colaborador se compromete a devolver el equipo asignado al Departamento de TI al momento de finalizar su relación laboral con la empresa, o cuando sea solicitado por la empresa por razones operativas o de negocio. El equipo deberá ser devuelto en las mismas condiciones en que fue entregado, considerando el desgaste normal por uso.` },
+  ];
+
+  const children = [
+    new Paragraph({
+      alignment: AlignmentType.CENTER,
+      spacing: { before: 0, after: 80 },
+      children: [new TextRun({ text: 'ACTA DE ENTREGA DE ACTIVOS INFORMÁTICOS', bold: true, size: 30, color: NAVY, font: 'Arial' })],
+    }),
+    new Paragraph({
+      alignment: AlignmentType.CENTER,
+      spacing: { before: 0, after: 60 },
+      children: [new TextRun({ text: 'MARRIOTT S.A.', bold: true, size: 22, color: GOLD, font: 'Arial' })],
+    }),
+    new Paragraph({
+      alignment: AlignmentType.CENTER,
+      spacing: { before: 0, after: 200 },
+      border: { bottom: solid('D0CAC0') },
+      children: [new TextRun({ text: `Guayaquil, Ecuador • Documento generado el ${d.fecha}`, size: 18, color: DGRAY, font: 'Arial', italics: true })],
+    }),
+
+    sectionTitle('1','DATOS GENERALES DEL COLABORADOR'),
+    spacer(80),
+    row2('Nombre completo:', d.nombre, 'Cédula:', d.cedula),
+    spacer(60),
+    row2('Cargo:', d.cargo, 'Área / Depto.:', d.area),
+    spacer(60),
+    row2('Centro de costos:', d.cc, 'Fecha de entrega:', d.fecha),
+    spacer(120),
+
+    sectionTitle('2','DETALLE DEL EQUIPO ASIGNADO'),
+    spacer(80),
+    new Paragraph({ children: [new TextRun({ text: 'Tipo de equipo:', bold: true, size: 18, color: NAVY, font: 'Arial' })], spacing:{before:60,after:40} }),
+    tipoRow(),
+    spacer(60),
+    row2('Marca:', d.marca, 'Modelo:', d.modelo),
+    spacer(60),
+    row2('Número de serie:', d.serie, 'Código de activo:', d.codigoActivo),
+    spacer(120),
+
+    sectionTitle('3','ACCESORIOS ENTREGADOS'),
+    spacer(80),
+    accRow(),
+    spacer(120),
+
+    sectionTitle('4','ESTADO DEL EQUIPO Y OBSERVACIONES'),
+    spacer(80),
+    new Paragraph({
+      spacing: { before: 60, after: 60 },
+      children: [new TextRun({ text: d.observaciones, size: 20, font: 'Arial' })],
+    }),
+    spacer(120),
+
+    ...clausulasTexto.flatMap(cl => [
+      sectionTitle(cl.n, cl.t),
+      spacer(60),
+      new Paragraph({ children: [new TextRun({ text: cl.b, size: 19, font: 'Arial', color: '333333' })], spacing: { before: 40, after: 60 } }),
+      spacer(60),
+    ]),
+
+    sectionTitle('10','FIRMAS Y ACEPTACIÓN'),
+    spacer(80),
+    new Paragraph({
+      spacing: { before: 0, after: 80 },
+      children: [new TextRun({ text: 'Las partes suscriben el presente documento en señal de conformidad con los términos establecidos:', size: 19, font: 'Arial', color: DGRAY, italics: true })],
+    }),
+    new Table({
+      width: { size: CONTENT_W, type: WidthType.DXA },
+      columnWidths: [Math.floor(CONTENT_W/3), Math.floor(CONTENT_W/3), CONTENT_W - 2*Math.floor(CONTENT_W/3)],
+      borders: allNone,
+      rows: [
+        new TableRow({ children: [
+          firmaBlock(d.nombre, d.cargo, 'Colaborador — Quien Recibe'),
+          firmaBlock(d.tiNombre, d.tiCargo, 'Departamento de TI — Quien Entrega'),
+          firmaBlock(d.rrhhNombre, d.rrhhCargo, 'Recursos Humanos — Testigo'),
+        ]})
+      ]
+    }),
+    spacer(200),
+    new Paragraph({
+      alignment: AlignmentType.CENTER,
+      children: [new TextRun({ text: 'Marriott S.A. Ecuador • Departamento de Tecnología de la Información', size: 16, color: DGRAY, font: 'Arial', italics: true })],
+    }),
+  ];
+
+  const doc = new Document({
+    sections: [{
+      properties: {
+        page: {
+          size: { width: PAGE_W, height: 16838 },
+          margin: { top: 900, right: 900, bottom: 900, left: 900 }
+        }
+      },
+      children,
+    }]
+  });
+
+  return await Packer.toBlob(doc);
+}
+
+// ===================== UTILS =====================
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 3000);
+}
+
+function showLoading(show) {
+  document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none';
+}
+
+function showToast(type, title, msg, duration=5000) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type==='error'?'error':''}`;
+  toast.innerHTML = `<div class="toast-icon">${type==='error'?'❌':'✅'}</div><div class="toast-body"><div class="toast-title">${title}</div><div class="toast-msg">${msg}</div></div>`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity='0'; toast.style.transition='opacity 0.3s'; setTimeout(()=>toast.remove(),300); }, duration);
+}
+
+function resetForm() {
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+  document.getElementById('otrosField').style.display = 'none';
+  ['nombre','cedula','cargo','area','cc','marca','modelo','serie','codigoActivo','observaciones','tiNombre','tiCargo','rrhhNombre','rrhhCargo','otrosTexto'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('fecha').value = today;
+}
+</script>
+</body>
+</html>
